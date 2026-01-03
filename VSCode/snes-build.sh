@@ -8,7 +8,7 @@ set -e
 
 MODE="${1:-debug}"
 ASM="main.asm"
-HEADER="header.inc"
+HEADER="inc/header.inc"
 
 if [[ "$MODE" != "debug" && "$MODE" != "release" ]]; then
   echo "Usage: $0 [debug|release]"
@@ -21,7 +21,7 @@ EXT="sfc"
 # ---- timestamp ----
 TIMESTAMP=$(date +"%Y%m%d__%p%I%M%S" | tr '[:lower:]' '[:upper:]')
 
-# ---- extract NAME from header.inc ----
+# ---- extract NAME from header.inc -
 if [[ ! -f "$HEADER" ]]; then
   echo "header.inc not found"
   exit 1
@@ -42,7 +42,7 @@ ROMNAME=$(echo "$ROMNAME" \
   | sed 's/[^A-Za-z0-9\-]//g')
 
 # ---- output folder ----
-OUTDIR="ROM"
+OUTDIR="_ROM"
 mkdir -p "$OUTDIR"
 
 OUTFILE="${OUTDIR}/${TIMESTAMP}__${MODE^^}__${ROMNAME}.${EXT}"
